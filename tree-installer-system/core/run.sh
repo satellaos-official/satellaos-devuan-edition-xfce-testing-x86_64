@@ -1,0 +1,67 @@
+#!/bin/bash
+echo "Installing XFCE and Other Packages"
+sudo apt install --no-install-recommends -y \
+  alsa-utils \
+  curl \
+  dbus-x11 \
+  engrampa \
+  exfatprogs \
+  fonts-bebas-neue \
+  fonts-montserrat \
+  galculator \
+  gvfs \
+  gvfs-backends \
+  gvfs-fuse \
+  libwebp7 \
+  lightdm \
+  lightdm-gtk-greeter \
+  lightdm-gtk-greeter-settings \
+  mate-polkit \
+  mousepad \
+  ntfs-3g \
+  onboard \
+  orca \
+  pavucontrol \
+  pkexec \
+  polkitd \
+  pulseaudio \
+  ristretto \
+  rsync \
+  thunar \
+  thunar-archive-plugin \
+  tumbler \
+  tumbler-plugins-extra \
+  udiskie \
+  udisks2 \
+  webp-pixbuf-loader \
+  wget \
+  x11-xserver-utils \
+  xfce4 \
+  xfce4-battery-plugin \
+  xfce4-clipman \
+  xfce4-clipman-plugin \
+  xfce4-datetime-plugin \
+  xfce4-indicator-plugin \
+  xfce4-notifyd \
+  xfce4-panel \
+  xfce4-panel-profiles \
+  xfce4-power-manager \
+  xfce4-power-manager-data \
+  xfce4-power-manager-plugins \
+  xfce4-pulseaudio-plugin \
+  xfce4-screenshooter \
+  xfce4-session \
+  xfce4-settings \
+  xfce4-taskmanager \
+  xfce4-terminal \
+  xfwm4 \
+  xorg
+
+echo "Removing XFCE Polkit"
+sudo apt purge -y xfce-polkit
+
+echo "Enabling OpenRC services"
+sudo rc-update add dbus default
+sudo rc-update add lightdm default
+sudo rc-update add udisks2 default
+sudo rc-update add alsa-utils default

@@ -1,0 +1,101 @@
+{
+    "$schema": "https://github.com/fastfetch-cli/fastfetch/raw/dev/doc/json_schema.json",
+    "display": {
+        "separator": "",
+        "size": {
+            "maxPrefix": "GB",
+            "ndigits": 1
+        }
+    },
+    "modules": [
+        {
+            "type": "title",
+            "format": "{#keys}{user-name}{#}@{#keys}{host-name}{#}"
+        },
+        "break",
+        {
+            "type": "os",
+            "key": " OS: "
+        },
+        {
+            "type": "host",
+            "key": " Host: "
+        },
+        {
+            "type": "kernel",
+            "key": " Kernel: ",
+            "format": "{release}"
+        },
+        {
+            "type": "uptime",
+            "key": " Uptime: "
+        },
+        {
+            "type": "packages",
+            "key": " Packages: "
+        },
+        {
+            "type": "shell",
+            "key": " Shell: "
+        },
+        {
+            "type": "display",
+            "key": " Resolution: ",
+            "compactType": "original"
+        },
+        {
+            "type": "de",
+            "key": " DE: "
+        },
+        {
+            "type": "wm",
+            "key": " WM: "
+        },
+        {
+            "type": "wmtheme",
+            "key": " WM Theme: "
+        },
+        {
+            "type": "theme",
+            "key": " Theme: "
+        },
+        {
+            "type": "icons",
+            "key": " Icons: "
+        },
+        {
+            "type": "terminal",
+            "key": " Terminal: "
+        },
+        {
+            "type": "terminalfont",
+            "key": " Terminal Font: ",
+            "format": "{/name}{-}{/}{name}{?size} {size}{?}"
+        },
+        {
+            "type": "cpu",
+            "key": " CPU: "
+        },
+        {
+            "type": "gpu",
+            "key": " GPU: "
+        },
+        {
+            "type": "command",
+            "key": " Memory: ",
+            "text": "free -m | awk '/^Mem:/{printf \"%d MiB / %d MiB\", $3, $2}'"
+        },
+        {
+            "type": "disk",
+            "key": " Disk ({mountpoint}): ",
+            "format": "{size-used} / {size-total}"
+        },
+        {
+            "type": "command",
+            "key": " Swap: ",
+            "text": "free -m | awk '/^Swap:/{u=($3==0)?\"0 B\":$3\" MiB\"; printf \"%s / %d MiB\", u, $2}'"
+        },
+        "break",
+        "colors"
+    ]
+}
