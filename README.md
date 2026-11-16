@@ -4,35 +4,35 @@ The experimental Devuan edition of SatellaOS aims to provide a freer, systemd-fr
 
 ---
 
-## 🏛️ Architecture
+## Architecture
 
 This version of SatellaOS Devuan Edition is developed for the x86_64 architecture.
 
 ---
 
-## Why SatellaOS? 🤔
+## Why SatellaOS?
 
-### 🏗️ Foundation
+### Foundation
 
 SatellaOS is built on top of the Devuan Netinst base. Its goal is to combine Devuan's solid foundation with a polished and reliable user experience. It currently targets the latest release, Devuan 6 (Excalibur).
 
-### 📦 Lightweight
+### Lightweight
 
 By default, SatellaOS ships with a very small number of installed `dpkg` packages. The total package count may increase depending on the software selected during installation.
 
-### 🖌️ Modern Appearance
+### Modern Appearance
 
 Unlike many XFCE-based Linux distributions, SatellaOS aims to give XFCE a modern look while maintaining its low resource usage.
 
-### 🧽 Minimal Bloatware
+### Minimal Bloatware
 
 SatellaOS is designed to include as little bloatware as possible. Users are **not forced** to install software such as office suites, media players, or web browsers. The choice is entirely yours.
 
-### ⚙️ Ecosystem
+### Ecosystem
 
-SatellaOS has its own growing ecosystem. For example, it includes a graphical `SatellaOS Deb Creator` that makes creating `.deb Packages` much easier. More tools will be added over time.
+SatellaOS has its own growing ecosystem. For example, it includes `Satella Application Menu Plugin` and `Satella Shelf Plugin`. More tools will be added over time.
 
-### 🌳 Tree Installation System
+### Script-Based Installation
 
 Unlike traditional Linux distributions, SatellaOS does **not** build or distribute ISO images.
 
@@ -42,16 +42,16 @@ Instead, it transforms an existing Devuan Netinst installation using a collectio
 
 ## ⚠️ Warnings
 
-### 📱 Touchscreen Support
+### Touchscreen Support
 
 Touch interface support is not finished yet, work is still in progress.
 Additionally, since we recently acquired touch hardware for testing, we will be improving this aspect moving forward.
 
-### 🕹️ Gaming
+### Gaming
 
 Gaming on Linux has improved significantly thanks to Proton. However, compatibility issues may still occur depending on the game or hardware configuration.
 
-### 👩🏻‍💻 Adobe Users
+### Adobe Users
 
 SatellaOS is a Linux distribution and therefore **does not provide official support for Adobe software.**
 
@@ -59,46 +59,102 @@ Some open-source alternatives are available, although they may differ in feature
 
 You may consider the following alternatives:
 
-<div style="border: 1px solid #000; padding: 12px 16px; border-radius: 6px;">
-
-- Adobe Photoshop → GIMP
-- Adobe Illustrator → Inkscape
-- Adobe InDesign → Scribus
-- Adobe Premiere Pro → DaVinci Resolve
-- Adobe After Effects → Blender
-- Adobe Lightroom → darktable
-- Adobe Acrobat → Xournal++
-- Adobe Audition → Audacity
-- Adobe XD → Penpot
-- Adobe Animate → Synfig Studio
-
-</div>
+> - Adobe Photoshop → GIMP
+> - Adobe Illustrator → Inkscape
+> - Adobe InDesign → Scribus
+> - Adobe Premiere Pro → Kdenlive
+> - Adobe After Effects → Blender
+> - Adobe Lightroom → darktable
+> - Adobe Acrobat → Okular / PDF Arranger
+> - Adobe Audition → Audacity
+> - Adobe XD → Penpot
+> - Adobe Animate → Synfig Studio
 
 We recommend trying these alternatives before completely switching from Windows.
 
 ---
 
-## 💻 Test System
-* **Model:** Lenovo ThinkPad X250
-* **CPU:** Intel Core i5-5300U
-* **GPU:** Intel HD Graphics 5500 (256 MB VRAM)
-* **RAM:** 8 GB DDR3L (1x8 GB)
-* **Storage:** 250 GB SSD
+## Installing SatellaOS
 
-## ✅ Recommended System Requirements
-* **CPU:** 64-bit Dual-Core 2.0 GHz+ (e.g., Intel Core i5-4300U)
-* **GPU:** Integrated or dedicated GPU with OpenGL 3.3+ support
-* **RAM:** 4 GB
-* **Storage:** 40 GB available space (SSD recommended)
+Before you start, make sure you have a clean Devuan netinstall installation **without any desktop environment** (see [System Requirements](#system-requirements)).
 
-## 📉 Minimum System Requirements
-* **CPU:** 64-bit Dual-Core 1.5 GHz+ (e.g., Intel Core i3-2310M)
-* **GPU:** Any GPU supporting 1024x768 resolution
-* **RAM:** 2 GB
-* **Storage:** 10 GB available space
+### 1. Get sudo privileges
+
+Skip this step if `sudo` already works for your user.
+
+If you did not set a root password during the base installation, Devuan installs the `sudo` package and grants your user sudo privileges by default, so you can skip this step.
+
+```
+su -
+```
+
+```
+apt install -y sudo
+```
+
+```
+usermod -aG sudo <your-username>
+```
+
+```
+exit
+```
+
+Then log out and log back in so the group change takes effect.
+
+### 2. Install dependencies
+
+```
+sudo apt install --no-install-recommends -y wget curl git
+```
+
+### 3. Install SatellaOS
+
+```
+git clone https://github.com/satellaos-official/satellaos-devuan-edition-xfce-testing-x86_64.git $HOME/satellaos-install
+```
+
+```
+sudo bash ~/satellaos-install/setup.sh
+```
+
 ---
 
-## 👤 Project Status
+## System Requirements
+
+### Installation Requirements
+
+* **Base system:** A clean Devuan 6 (Excalibur) netinst installation
+* **Init system:** OpenRC (select it during the base installation if the installer offers a choice)
+* **No desktop environment:** Do NOT select any desktop environment during the base installation. Pre-installed desktop packages and recommended extras will make the system heavy and slow.
+* **Internet connection:** Required during installation (`setup.sh` downloads packages)
+* **Privileges:** `setup.sh` must be run as root (see [Get sudo privileges](#1-get-sudo-privileges))
+* **Boot mode:** UEFI and Legacy BIOS are both supported by the base installer
+* **Installation media:** A USB drive for the Devuan netinst image
+
+### Minimum
+
+* **CPU:** 64-bit Dual-Core 1.5 GHz+ (e.g., Intel Core i3-2310M)
+* **GPU:** Any GPU supporting 1024x768 resolution
+* **RAM:** 1 GB (idle usage is around 430 MB)
+* **Storage:** 15 GB available space (a fresh installation uses about 6.5 GB; additional applications, updates, and cache will increase this)
+
+### Recommended
+
+* **CPU:** 64-bit Dual-Core 2.0 GHz+ (e.g., Intel Core i5-4300U)
+* **GPU:** Integrated or dedicated GPU with OpenGL 3.3+ support
+* **RAM:** 2 GB (4 GB or more for comfortable multitasking and web browsing)
+* **Storage:** 40 GB available space (SSD strongly recommended)
+* **Display:** 1366x768 or higher
+
+### Tested On
+
+* **Physical:** Lenovo ThinkPad X250 (Intel Core i5-5300U, Intel HD Graphics 5500, 8 GB DDR3L, 250 GB SSD)
+* **Virtual machine:** 1 GB RAM, 1 core / 1 thread, runs smoothly
+
+---
+
+## Project Status
 
 SatellaOS is currently developed and maintained by a single developer.
 
@@ -106,7 +162,7 @@ Although development may progress at a different pace compared to larger project
 
 ---
 
-## 𓂃🪶 Philosophy
+## Philosophy
 
 SatellaOS is **not** about providing the largest number of features.
 
@@ -123,17 +179,17 @@ SatellaOS aims to stay out of the user's way and allow them to build the system 
 
 ---
 
-## 📎 Stable Release
+## Stable Release
 
 This repository contains **experimental testing builds**.
 
 For the stable and recommended version of SatellaOS, please visit:
 
-**https://github.com/satellaos-official/satellaos-debian-edition-xfce-stable-x86_64**
+**https://github.com/satellaos-official/satellaos-devuan-edition-xfce-stable-x86_64**
 
 ---
 
-## 📜 License
+## License
 
 This project is licensed under the **MIT License**.
 
