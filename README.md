@@ -123,7 +123,7 @@ git clone https://github.com/satellaos-official/satellaos-devuan-edition-xfce-te
 ```
 
 ```
-sudo bash ~/satellaos-install/setup.sh
+bash $HOME/satellaos-install/setup.sh
 ```
 
 ---
