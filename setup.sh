@@ -23,6 +23,8 @@ bash $SCRIPT_DIR/tree-installer-system/satellaos-builds/run.sh
 
 bash $SCRIPT_DIR/tree-installer-system/core/run.sh
 
+bash $SCRIPT_DIR/tree-installer-system/elogind-installer/run.sh
+
 bash $SCRIPT_DIR/tree-installer-system/seatd-installer/run.sh
 
 bash $SCRIPT_DIR/tree-installer-system/grub-theme/run.sh
